@@ -11,11 +11,8 @@ namespace Console
     {
         static void Main(string[] args)
         {
-            Helper helper = new Helper();
-            ArrayInt arrayInt = new ArrayInt();
-
-            int[] arrayTest = arrayInt.SetupOneDimension(10, 0, 100);
-            helper.PrintArrayInt(arrayTest);
+            int[] arrayTest = ArrayInt.SetupOneDimension(10, 0, 100);
+            Helper.PrintArrayInt(arrayTest);
         }
     }
 }
