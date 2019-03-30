@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using AlgorithmsLibrary;
 
-namespace Console
+namespace ConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int[] arrayTest = ArrayInt.SetupOneDimension(10, 0, 100);
-            Helper.PrintArrayInt(arrayTest);
+            int[] arrayTest = ArrayInt.OneDimensionArray(5, 0, 10);
+            ArrayInt.PrintArrayInt(arrayTest);
+            Console.WriteLine(ArrayInt.IsSymmetrical(arrayTest));
         }
     }
 }

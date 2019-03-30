@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace AlgorithmsLibrary
 {
     public static class Helper
@@ -11,16 +12,6 @@ namespace AlgorithmsLibrary
             int intRandom = random.Next(intMin, intMax);
 
             return intRandom;
-        }
-
-        // print elements' values out to console
-        public static void PrintArrayInt(int[] array)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.WriteLine($"Element {i} is {array[i]}");
-            }
-            Console.ReadLine();
         }
     }
 }
