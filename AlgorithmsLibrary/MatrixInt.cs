@@ -72,5 +72,35 @@ namespace AlgorithmsLibrary
                 Console.WriteLine();
             }
         }
+
+        public static void PrintMaximalSubMatrix
+        (int[,] matrix, int subMatrixRows, int subMatrixCols)
+        {
+            // if subMatrix size exceeds matrix, print warning, break
+            if (subMatrixRows > matrix.GetLength(0) 
+            | subMatrixCols > matrix.GetLength(1))
+            {
+                Console.WriteLine("SubMatrix exceeds size of matrix!");
+                return;
+            }
+
+            // row, column stop indicies
+            // subMatrixSize assumes equal dimensions matrix for test; to change
+            int indexRowStop = matrix.GetLength(0) - subMatrixRows +1;
+            int indexColStop = matrix.GetLength(1) - subMatrixCols +1;
+            int testHighestIndex = 0;
+
+            // get subMatrix stop index 
+            for (int counterRows = 0; counterRows < indexRowStop; counterRows ++)
+            {
+                for (int counterCols = 0; counterCols < indexColStop; counterCols ++)
+                {
+
+                    // if highest total value so far assign
+                    testHighestIndex = matrix[counterRows, counterCols];
+                }
+            }
+            Console.WriteLine($"testValueIndexStop: {testHighestIndex}");
+        }
     }
 }
