@@ -11,9 +11,13 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            int[] arrayTest = ArrayInt.OneDimensionArray(5, 0, 10);
-            ArrayInt.PrintArrayInt(arrayTest);
-            Console.WriteLine(ArrayInt.IsSymmetrical(arrayTest));
+            Console.WriteLine("arrayTest:");
+            int[] arrayTest = ArrayInt.VectorIntRandom(10, 0, 1);
+            ArrayInt.PrintVectorInt(arrayTest);
+
+            Console.WriteLine("matrixTest:");
+            int[,] matrixTest = ArrayInt.MatrixIntRandom(3, 3, 0, 100);
+            ArrayInt.PrintMatrixInt(matrixTest);
         }
     }
 }
