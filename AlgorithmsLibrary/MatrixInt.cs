@@ -61,46 +61,99 @@ namespace AlgorithmsLibrary
                 {
                     // padding = (max digits - current digits) * spaces  
                     padding = Helper.Padding
-                    (digitsMax - 
+                    (digitsMax -
                         Helper.DigitsInInt
                     (matrixToPrint[counterRows, counterCols]));
 
                     Console.Write($"{padding}" +
-                    	$"{matrixToPrint[counterRows, counterCols]} ");
+                        $"{matrixToPrint[counterRows, counterCols]} ");
                 }
                 // move to next line to print next row
                 Console.WriteLine();
             }
         }
 
-        public static void PrintMaximalSubMatrix
+        // Return maxmimal sub-matrix (highest sum of elements) of given matrix
+        // Return first maximal sub-matrix if multiple have same total
+        // Return null if sub-matrix dimensions exceed matrix
+        // Sub-matrix size set by subMatrixRows, subMatrixCols
+        public static int[,] MaximalSubMatrix
         (int[,] matrix, int subMatrixRows, int subMatrixCols)
         {
-            // if subMatrix size exceeds matrix, print warning, break
-            if (subMatrixRows > matrix.GetLength(0) 
+            // Print message, break if sub-matrix dimensions exceed matrix dimensions
+            if (subMatrixRows > matrix.GetLength(0)
             | subMatrixCols > matrix.GetLength(1))
             {
-                Console.WriteLine("SubMatrix exceeds size of matrix!");
-                return;
+                Console.WriteLine("Aboring: sub-matrix dimnesions exceed matrix dimensions.");
+                return null;
             }
+            // Row, column stop indiciese
+            int indexRowStop = matrix.GetLength(0) - subMatrixRows + 1;
+            int indexColStop = matrix.GetLength(1) - subMatrixCols + 1;
+            // Used to set start element of sub-matrix
+            int indexMaximalRow = 0;
+            int indexMaximalCol = 0;
+            // Used to compare totals of each sub-matrix in matrix
+            int valueCurent = 0;
+            int valueMaximal = 0;
 
-            // row, column stop indicies
-            // subMatrixSize assumes equal dimensions matrix for test; to change
-            int indexRowStop = matrix.GetLength(0) - subMatrixRows +1;
-            int indexColStop = matrix.GetLength(1) - subMatrixCols +1;
-            int testHighestIndex = 0;
-
-            // get subMatrix stop index 
-            for (int counterRows = 0; counterRows < indexRowStop; counterRows ++)
+            // Iterate matrix's sub-matrix start elements
+            // Iterate possible rows
+            for (int counterRows = 0; counterRows < indexRowStop; counterRows++)
             {
-                for (int counterCols = 0; counterCols < indexColStop; counterCols ++)
-                {
+                // Iterate possible columns
+                for (int counterCols = 0; counterCols < indexColStop; counterCols++)
+                {              
+                    // Iterate current sub-matrix's elements
+                    // Iterate sub-matrix rows
+                    for (int counterSubRows = counterRows; counterSubRows < subMatrixRows + counterRows; counterSubRows++)
+                    {
+                        // Iterate sub-matrix columns
+                        for (int counterSubCols = counterCols; counterSubCols < subMatrixCols + counterCols; counterSubCols++)
+                        {
+                            // Sum elements of current sub-matrix
+                            valueCurent += matrix[counterSubRows, counterSubCols];
+                        }
+                    }
+                    // Assign current maximal value, start maximal matrix's start element
+                    if (valueCurent > valueMaximal)
+                    {
+                        valueMaximal = valueCurent;
 
-                    // if highest total value so far assign
-                    testHighestIndex = matrix[counterRows, counterCols];
+                        indexMaximalRow = counterRows;
+                        indexMaximalCol = counterCols;
+                    }
+                    valueCurent = 0;
                 }
             }
-            Console.WriteLine($"testValueIndexStop: {testHighestIndex}");
+
+            // Declare maximal matrix
+            int[,] maximalMatrix = new int[subMatrixRows, subMatrixCols];
+
+            // Iterate maximal matrix rows
+            for (int counterMaxRow = 0; counterMaxRow < subMatrixRows; counterMaxRow++)
+            {
+                // Iterate maximal matrix cols
+                for (int counterMaxCol = 0; counterMaxCol < subMatrixCols; counterMaxCol++)
+                {
+                    // Initilaise matrix elements' values
+                    maximalMatrix[counterMaxRow, counterMaxCol] = matrix[indexMaximalRow + counterMaxRow, indexMaximalCol + counterMaxCol];
+                }
+            }
+            return maximalMatrix;
+        }
+
+        // Return sum of all matrix elements
+        public static int SumMatrixIntElements(int[,] matrix)
+        {
+            int total = 0;
+
+            foreach (int element in matrix)
+            {
+                total += element;
+            }
+
+            return total;
         }
     }
 }
