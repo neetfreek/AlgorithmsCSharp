@@ -60,13 +60,10 @@ namespace AlgorithmsLibrary
                 for (int counterCols = 0; counterCols < numCols; counterCols++)
                 {
                     // padding = (max digits - current digits) * spaces  
-                    padding = Helper.Padding
-                    (digitsMax -
-                        Helper.DigitsInInt
-                    (matrixToPrint[counterRows, counterCols]));
+                    padding = Helper.Padding(digitsMax -Helper.DigitsInInt(matrixToPrint[counterRows, counterCols]));
 
-                    Console.Write($"{padding}" +
-                        $"{matrixToPrint[counterRows, counterCols]} ");
+                    // old padding
+                    Console.Write($"{padding}{matrixToPrint[counterRows, counterCols]} ");
                 }
                 // move to next line to print next row
                 Console.WriteLine();
@@ -154,6 +151,48 @@ namespace AlgorithmsLibrary
             }
 
             return total;
+        }
+
+        // Return Pascal's Triangle
+        public static int[][] PascalsTriangle(int rows)
+        {
+            // Declare triangle (array of arrays)
+            int[][] triangle = new int[rows][];
+
+            // Iterate rows in triangle (array)
+            for (int row = 0; row < rows; row++)
+            {
+                // Initialise row's elements to default (0) value
+                triangle[row] = new int[row+1];
+            }
+
+            // Initialise first row's column (element) to 1
+            triangle[0][0] = 1;
+            // Iterate each row except last (modifying proceeding rows)
+            for (int row = 0; row < rows-1; row++)
+            {
+                // Iterate each row's column (element)
+                for (int col = 0; col <= row; col++)
+                {
+                    // Initialise next row's columns (elements)
+                    triangle[row + 1][col] += triangle[row][col];
+                    triangle[row + 1][col+1] += triangle[row][col];
+                }
+            }
+
+            return triangle;
+        }
+
+        public static void PrintMatrixTriangle(int[][] triangle)
+        {
+            foreach (int[] row in triangle)
+            {
+                foreach (int element in row)
+                {
+                    Console.Write($"{element}");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

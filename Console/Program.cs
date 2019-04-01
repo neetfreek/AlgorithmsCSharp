@@ -7,7 +7,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            TestPrintMaximalSubMatrix();
+            TestPascalsTriangle();
         }
 
         private static void TestVector()
@@ -27,12 +27,18 @@ namespace ConsoleApp
         private static void TestPrintMaximalSubMatrix()
         {
             Console.WriteLine("Test maximal sub-matrix");
-            int[,] testMatrix = MatrixInt.MatrixRandom(20, 30, 0, 10);
+            int[,] testMatrix = MatrixInt.MatrixRandom(30, 30, 0, 1000);
             MatrixInt.PrintMatrix(testMatrix);
 
             int[,]maximalMatrix = MatrixInt.MaximalSubMatrix(testMatrix, 2, 2);
             Console.WriteLine($"Maximal matrix value = {MatrixInt.SumMatrixIntElements(maximalMatrix)}");
             MatrixInt.PrintMatrix(maximalMatrix);
+        }
+
+        private static void TestPascalsTriangle()
+        {
+            int[][] testPascalsTriangle = MatrixInt.PascalsTriangle(12);
+            MatrixInt.PrintMatrixTriangle(testPascalsTriangle);
         }
     }
 }
