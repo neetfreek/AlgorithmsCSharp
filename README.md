@@ -1,4 +1,4 @@
 # AlgorithmsCSharp
-This solution is a collection of different algorithms written in C#.
-- **AlgorithmLibrary* (.NET Standard 2.0) library contain the algorithms.
-- **ConsoleApp** (.NET Framework 4.71) is for testing the algorithms out.
+This solution contains two projects:
+- **AlgorithmLibrary** (.NET Standard 2.0) library contains algorithm functionality. 
+- **ConsoleApp** (.NET Framework 4.71) program for testing algorithms via console.
