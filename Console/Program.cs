@@ -37,8 +37,10 @@ namespace ConsoleApp
 
         private static void TestPascalsTriangle()
         {
-            int[][] testPascalsTriangle = MatrixInt.PascalsTriangle(12);
-            MatrixInt.PrintMatrixTriangle(testPascalsTriangle);
+            int[][] testPascalsTriangle = ArrayJagged.PascalsTriangle(12);
+            ArrayJagged.PrintTriangle(testPascalsTriangle);
+            int maxElement = ArrayJagged.MaxElementTriangle(testPascalsTriangle);
+            Console.WriteLine("MAX ELEMENT IS " + maxElement);
         }
     }
 }

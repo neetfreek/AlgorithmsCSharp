@@ -4,15 +4,15 @@ namespace AlgorithmsLibrary
 {
     public static class VectorInt
     {
-        // Return vector with numElements number of elements
-        // Elements assigned random values between eleMin, eleMax inclusive
+        // Return vector with numElements elements
+        // Initialise elements to random values between eleMin, eleMax inclusive
         public static int[] VectorIntRandom 
         (int numEles, int eleMin, int eleMax)
         {
             // Declare vector
             int[] vector = new int[numEles];
 
-            // iterate elements 
+            // Iterate elements 
             for (int counter = 0; counter < numEles; counter++)
             {
                 // Initialise elements
@@ -22,14 +22,14 @@ namespace AlgorithmsLibrary
             return vector;
         }
 
-        // Check vector for symmetry; return true if symmetrical, false if not
-        // if length is odd number, middle number excluded
+        // Return true if vector == symmetrical, false if != symmetrical
+        // Exclude middle number from check (matches itself, alwasy symmetrical)
         public static bool IsSymmetricalVectorInt(int[] array)
         {
             bool isSymmetrical = false;
             int length = array.Length;
 
-            // iterate half elements
+            // Iterate half elements
             for (int counter = 0; counter < length/2; counter++)
             {
                 if (array[counter] != array[length -1 -counter])
@@ -37,8 +37,8 @@ namespace AlgorithmsLibrary
                     return isSymmetrical;
                 }
             }
-
             isSymmetrical = true;
+
             return isSymmetrical;
         }
 
@@ -47,14 +47,14 @@ namespace AlgorithmsLibrary
         {
             int length = vectorToPrint.Length;
 
-            // iterate elements
+            // Iterate elements
             for (int i = 0; i < length; i++)
             {
-                // print element, space
+                // Print element with space
                 Console.Write($"{vectorToPrint[i]} ");
             }
-            // go to new line in case printing later to console
-            Console.WriteLine();
+            // 
+            Console.Write(Environment.NewLine);
         }
     }
 }
