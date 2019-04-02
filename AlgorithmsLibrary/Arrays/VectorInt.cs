@@ -6,7 +6,7 @@ namespace AlgorithmsLibrary
     {
         // Return vector with numElements elements
         // Initialise elements to random values between eleMin, eleMax inclusive
-        public static int[] VectorIntRandom 
+        public static int[] VectorRandom 
         (int numEles, int eleMin, int eleMax)
         {
             // Declare vector
@@ -24,7 +24,7 @@ namespace AlgorithmsLibrary
 
         // Return true if vector == symmetrical, false if != symmetrical
         // Exclude middle number from check (matches itself, alwasy symmetrical)
-        public static bool IsSymmetricalVectorInt(int[] array)
+        public static bool IsSymmetrical(int[] array)
         {
             bool isSymmetrical = false;
             int length = array.Length;
@@ -43,7 +43,7 @@ namespace AlgorithmsLibrary
         }
 
         // Print elements' values to console
-        public static void PrintVectorInt(int[] vectorToPrint)
+        public static void PrintVector(int[] vectorToPrint)
         {
             int length = vectorToPrint.Length;
 

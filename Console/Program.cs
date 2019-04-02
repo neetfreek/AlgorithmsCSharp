@@ -6,15 +6,14 @@ namespace ConsoleApp
     class Program
     {
         static void Main(string[] args)
-        {
-            TestPascalsTriangle();
+        {            
         }
 
         private static void TestVector()
         {
-            int[] testVector = VectorInt.VectorIntRandom(10, 0, 1000);
+            int[] testVector = VectorInt.VectorRandom(10, 0, 1000);
             Console.WriteLine("Test vector: ");
-            VectorInt.PrintVectorInt(testVector);
+            VectorInt.PrintVector(testVector);
         }
 
         private static void TestMatrix()
