@@ -42,7 +42,7 @@ namespace AlgorithmsLibrary
             return isSymmetrical;
         }
 
-        // Print elements' values to console
+        // Print vector
         public static void PrintVector(int[] vectorToPrint)
         {
             int length = vectorToPrint.Length;

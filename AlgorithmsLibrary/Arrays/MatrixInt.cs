@@ -94,6 +94,131 @@ namespace AlgorithmsLibrary
             }
             return maximalMatrix;
         }
+        
+        // Return rotated copy of provided square (equal rows, columns) matrix
+        // Direction for rotation accepted as 0 == left, 1 == right
+        // Aborts if matrix is not a square or direction incorrectly passed
+        public static int[,] RotateSquare(int[,] matrix, int direction)
+        {
+            // Declare, initialise values used in iteration of matrix
+            int rowsMatrix = matrix.GetLength(0);
+            int colsMatrix = matrix.GetLength(1);
+            int rowsMid = (matrix.GetLength(0) / 2);
+            int colMid = (matrix.GetLength(1) / 2);
+
+            // Left == 0; right == 1
+            int direct = direction;
+
+            // Initialise matrixRotated with default (0) values
+            int[,] matrixRotated = new int[rowsMatrix, colsMatrix];
+
+            // ensure direction correctly specified
+            if (direct != 0 && direct != 1)
+            {
+                Console.WriteLine("Aborting: Incorrectly specified direction: clockwise == 0, counter-clockwise == 1");
+                return matrixRotated;
+            }
+            // Ensure matrix is a square 
+            if (rowsMatrix != colsMatrix)
+            {
+                Console.WriteLine("Aborting: Matrix is not a square.");
+                return matrixRotated;
+            }
+
+            int passesTotal = 0;
+
+            // Iterate matrix
+            while (passesTotal < matrix.GetLength(0))
+            {
+                // Iterate outer top row
+                for (int row = passesTotal; row < passesTotal + 1; row++)
+                {
+                    // Iterate columns
+                    for (int col = colsMatrix - 1 - passesTotal; col > passesTotal; col--)
+                    {                        
+                        if (direct == 0)
+                        {
+                            // Move column left
+                            matrixRotated[row, col - 1] = matrix[row, col];
+                        } else
+                        {
+                            // Move column right
+                            matrixRotated[row, col] = matrix[row, col - 1];
+                        }
+                    }
+                }
+
+                // Iterate rows in col passesLeft (LEFT ROW)
+                for (int col = passesTotal; col < passesTotal + 1; col++)
+                {
+                    // Iterate rows
+                    for (int row = 0 + passesTotal; row < rowsMatrix - 1 - passesTotal; row++)
+                    {                        
+                        if (direct == 0)
+                        {
+                            // Move row down
+                            matrixRotated[row + 1, col] = matrix[row, col];
+                        }
+                        else
+                        {
+                            // move row up
+                            matrixRotated[row, col] = matrix[row + 1, col];
+                        }
+                    }
+                }
+
+                // Iterate cols in row rowsMatrix (BOTTOM ROW)
+                for (int row = rowsMatrix - 1 - passesTotal; row < rowsMatrix - passesTotal; row++)
+                {
+                    // Iterate columns
+                    for (int col = 0 + passesTotal; col < colsMatrix - 1 - passesTotal; col++)
+                    {                        
+                        if (direct == 0)
+                        {
+                            // Move column right
+                            matrixRotated[row, col + 1] = matrix[row, col];
+                        }
+                        else
+                        {
+                            // move column left
+                            matrixRotated[row, col] = matrix[row, col + 1];
+                        }
+                    }
+                }
+
+                // Iterate rows in col colsMatrix (RIGHT ROW)
+                for (int col = colsMatrix - 1 - passesTotal; col < colsMatrix - passesTotal; col++)
+                {
+                    // Iterate rows
+                    for (int row = rowsMatrix - 1 - passesTotal; row > passesTotal; row--)
+                    {                        
+                        if (direct == 0)
+                        {
+                            // Move col up
+                            matrixRotated[row - 1, col] = matrix[row, col];
+                        }
+                        else
+                        {
+                            // Move col down
+                            matrixRotated[row, col] = matrix[row - 1, col];
+                        }
+                    }
+                }
+                passesTotal++;
+            }
+
+            // Determine mid-point
+            int midRow = rowsMatrix / 2;
+            int midCol = colsMatrix / 2;
+            // if mid-point exists
+            if (midRow % 2 != 0 | midCol % 2 != 0)
+            {
+                // Initialise mid-point in rotated matrix to mid-point of matrix
+                matrixRotated[midRow, midCol] = matrix[midRow, midCol];
+            }
+
+            return matrixRotated;
+        }
 
         // Return highest value matrix element
         public static int MaxElementMatrix(int[,] matrix)

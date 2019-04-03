@@ -6,7 +6,8 @@ namespace ConsoleApp
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            TestRotateSquareLeft();
         }
 
         private static void TestVector()
@@ -40,6 +41,21 @@ namespace ConsoleApp
             ArrayJagged.PrintTriangle(testPascalsTriangle);
             int maxElement = ArrayJagged.MaxElementTriangle(testPascalsTriangle);
             Console.WriteLine("MAX ELEMENT IS " + maxElement);
+        }
+
+        private static void TestRotateSquareLeft()
+        {
+            int[,] testMatrix = MatrixInt.MatrixRandom(5,5, 1, 100);
+            int[,] testMatrixRotatedLeft = MatrixInt.RotateSquare(testMatrix, 0);
+            int[,] testMatrixRotatedRight = MatrixInt.RotateSquare(testMatrix, 1);
+            Console.WriteLine("=== ORIGINAL MATRIX ===");
+            MatrixInt.PrintMatrix(testMatrix);
+            Console.WriteLine();
+            Console.WriteLine("=== LEFT ROTATED MATRIX ===");
+            MatrixInt.PrintMatrix(testMatrixRotatedLeft);
+            Console.WriteLine();
+            Console.WriteLine("=== RIGHT ROTATED MATRIX ===");
+            MatrixInt.PrintMatrix(testMatrixRotatedRight);
         }
     }
 }
