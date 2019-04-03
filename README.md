@@ -1,4 +1,4 @@
-# Algorithms
+# AlgorithmsCSharp
 This library is project for me to better organise various functionality. Currently includes arrays.
 
 This solution contains two projects:
