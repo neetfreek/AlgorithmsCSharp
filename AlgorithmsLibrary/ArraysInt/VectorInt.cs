@@ -57,7 +57,7 @@ namespace AlgorithmsLibrary
                     if (Helper.GreaterThan(vector[counter], vector[counterNext]))
                     {
                         // Swap with current column element in outer loop
-                        Helper.Swap(vector, counterNext, counter);
+                        HelperSort.Swap(vector, counterNext, counter);
                     }
                 }
             }
