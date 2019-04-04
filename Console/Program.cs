@@ -7,24 +7,25 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            TestRotateSquareLeft();
+            TestSortSelectionMatrix();
         }
 
-        private static void TestVector()
+        // Shape tests
+        private static void TestVectorRandom()
         {
             int[] testVector = VectorInt.VectorRandom(10, 0, 1000);
             Console.WriteLine("Test vector: ");
             VectorInt.PrintVector(testVector);
         }
 
-        private static void TestMatrix()
+        private static void TestMatrixRandom()
         {
             int[,] testMatrix = MatrixInt.MatrixRandom(5, 23, 0, 1000);
             Console.WriteLine("Test array");
             MatrixInt.PrintMatrix(testMatrix);
         }
 
-        private static void TestPrintMaximalSubMatrix()
+        private static void TestMaximalSubMatrix()
         {
             Console.WriteLine("Test maximal sub-matrix");
             int[,] testMatrix = MatrixInt.MatrixRandom(30, 30, 0, 1000);
@@ -37,13 +38,15 @@ namespace ConsoleApp
 
         private static void TestPascalsTriangle()
         {
-            int[][] testPascalsTriangle = ArrayJagged.PascalsTriangle(12);
-            ArrayJagged.PrintTriangle(testPascalsTriangle);
-            int maxElement = ArrayJagged.MaxElementTriangle(testPascalsTriangle);
+            int[][] testPascalsTriangle = ArrayJaggedInt.PascalsTriangle(12);
+            ArrayJaggedInt.PrintTriangle(testPascalsTriangle);
+            int maxElement = ArrayJaggedInt.MaxElementTriangle(testPascalsTriangle);
             Console.WriteLine("MAX ELEMENT IS " + maxElement);
         }
 
-        private static void TestRotateSquareLeft()
+
+        // Manipulation tests
+        private static void TestRotateMatrix()
         {
             int[,] testMatrix = MatrixInt.MatrixRandom(5,5, 1, 100);
             int[,] testMatrixRotatedLeft = MatrixInt.RotateSquare(testMatrix, 0);
@@ -56,6 +59,40 @@ namespace ConsoleApp
             Console.WriteLine();
             Console.WriteLine("=== RIGHT ROTATED MATRIX ===");
             MatrixInt.PrintMatrix(testMatrixRotatedRight);
+        }
+
+
+        // SortInt tests
+        private static void TestSortSelectionVector()
+        {
+            int[] testVector = VectorInt.VectorRandom(100, 0, 1000);
+            Console.WriteLine("=== ORIGINAL VECTOR ===");
+            VectorInt.PrintVector(testVector);
+            SortInt.SortSelectionVector(testVector);
+            Console.WriteLine("=== SORTED VECTOR ===");
+            VectorInt.PrintVector(testVector);
+        }
+
+        private static void TestSortSelectionMatrix()
+        {
+            int[,] testMatrix = MatrixInt.MatrixRandom(5, 5, 0, 1000);
+            Console.WriteLine("=== ORIGINAL MATRIX ===");
+            MatrixInt.PrintMatrix(testMatrix);
+            SortInt.SortSelectionMatrix(testMatrix);
+            Console.WriteLine("=== SELECTION-SORTED MATRIX ===");
+            MatrixInt.PrintMatrix(testMatrix);
+        }
+
+
+        private static void TestSortSelectionMatrixRows()
+        {
+            int[,] testMatrix = MatrixInt.MatrixRandom(5, 5, 0, 1000);
+            Console.WriteLine("=== ORIGINAL MATRIX ===");
+            MatrixInt.PrintMatrix(testMatrix);
+            SortInt.SortSelectionMatrixRows(testMatrix);
+            Console.WriteLine();
+            Console.WriteLine("=== SELECTION-SORTED (ROWS) MATRIX ===");
+            MatrixInt.PrintMatrix(testMatrix);
         }
     }
 }

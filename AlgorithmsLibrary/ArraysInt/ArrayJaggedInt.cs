@@ -2,17 +2,17 @@
 
 namespace AlgorithmsLibrary
 {
-    public static class ArrayJagged
+    public static class ArrayJaggedInt
     {
         // Return Pascal's Triangle
         // Initialise first rows's column (element) to 1
-        // Initialise proceeding rows' columns by:  
-        // 1) intialising same column index to same as current 2) intialising next column index 
+        // Assign proceeding rows' columns by:  
+        // 1) Assign same column index to same as current 2) Assigning next column index 
         public static int[][] PascalsTriangle(int rows)
         {
             int[][] triangle = TriangleEquilateralEmpty(rows);
 
-            // Initialise first row's column to 1
+            // Assign first row's column's value to 1
             triangle[0][0] = 1;
             // Iterate each row except last (modifying proceeding rows)
             for (int row = 0; row < rows - 1; row++)
@@ -32,13 +32,13 @@ namespace AlgorithmsLibrary
         // Return empty triangle
         public static int[][] TriangleEquilateralEmpty(int rows)
         {
-            // Declare triangle (array of arrays)
+            // Declare, initialise with default (0) values, triangle (array of arrays)
             int[][] triangle = new int[rows][];
 
             // Iterate rows in triangle (array)
             for (int row = 0; row < rows; row++)
             {
-                // Initialise row's elements to default (0) value
+                // Assign row's elements to default (0) value
                 triangle[row] = new int[row + 1];
             }
 

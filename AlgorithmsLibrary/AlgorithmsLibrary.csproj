@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Arrays\Helper.cs" />
+    <Compile Remove="ArraysInt\Helper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Sort\" />
   </ItemGroup>
 
 </Project>

@@ -16,7 +16,7 @@ namespace AlgorithmsLibrary
             {   // Iterate colums in row
                 for (int counterCols = 0; counterCols < numCols; counterCols++)
                 {
-                    // Initialise element to random value
+                    // Assign element to random value
                     matrix[counterRows, counterCols] =
                     Helper.RandomInt(eleMin, eleMax + 1);
                 }
@@ -79,7 +79,7 @@ namespace AlgorithmsLibrary
                 }
             }
 
-            // Declare maximal matrix
+            // Declare maximal matrix, intialise with default (0) values
             int[,] maximalMatrix = new int[subMatrixRows, subMatrixCols];
 
             // Iterate maximal matrix rows
@@ -213,7 +213,7 @@ namespace AlgorithmsLibrary
             // if mid-point exists
             if (midRow % 2 != 0 | midCol % 2 != 0)
             {
-                // Initialise mid-point in rotated matrix to mid-point of matrix
+                // Assign mid-point in rotated matrix to mid-point of matrix
                 matrixRotated[midRow, midCol] = matrix[midRow, midCol];
             }
 
@@ -247,6 +247,31 @@ namespace AlgorithmsLibrary
 
             return total;
         }
+
+        public static int CountElementsMatrix(int[,] matrix)
+        {
+            int count = 0;
+
+            foreach (int element in matrix)
+            {
+                count++;
+            }
+
+            return count;
+        }
+
+        // SortInt matrix elements in ascending order
+        //public static void SortSelectionMatrixRows(int[,] matrix)
+        //{
+        //    int length = MatrixInt.CountElementsMatrix(matrix);
+
+        //    // Iterate vector columns (elements)
+        //    for (int row = 0; row < matrix.GetLength(0); row++)
+        //    {
+        //        int[] vectorRow = 
+        //        SortSelectionVector(matrix[row]);
+        //    }
+        //}
 
         // Print matrix to console
         // Apply padding to align elements (effective up to max console window size)
