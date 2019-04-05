@@ -7,57 +7,62 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            TestSortSelectionMatrix();
+            TestRotateMatrix();
         }
 
         // Shape tests
         private static void TestVectorRandom()
         {
+            Console.WriteLine("=== RANDOM VECTOR ===");
+
             int[] testVector = VectorInt.VectorRandom(10, 0, 1000);
-            Console.WriteLine("Test vector: ");
             VectorInt.PrintVector(testVector);
         }
 
         private static void TestMatrixRandom()
         {
+            Console.WriteLine("=== RANDOM MATRIX ===");
+
             int[,] testMatrix = MatrixInt.MatrixRandom(5, 23, 0, 1000);
-            Console.WriteLine("Test array");
             MatrixInt.PrintMatrix(testMatrix);
         }
 
         private static void TestMaximalSubMatrix()
         {
-            Console.WriteLine("Test maximal sub-matrix");
+            Console.WriteLine("=== MATRIX ===");
+
             int[,] testMatrix = MatrixInt.MatrixRandom(30, 30, 0, 1000);
             MatrixInt.PrintMatrix(testMatrix);
-
             int[,]maximalMatrix = MatrixInt.MaximalSubMatrix(testMatrix, 2, 2);
-            Console.WriteLine($"Maximal matrix value = {MatrixInt.SumMatrixIntElements(maximalMatrix)}");
+            Console.WriteLine("=== MAXIMAL SUB-MATRIX ===");
             MatrixInt.PrintMatrix(maximalMatrix);
+            Console.WriteLine($"{Environment.NewLine}Maximal matrix value = {MatrixInt.SumMatrixIntElements(maximalMatrix)}");
         }
 
         private static void TestPascalsTriangle()
         {
+            Console.WriteLine("=== PASCAL'S TRIANGLE ===");
             int[][] testPascalsTriangle = ArrayJaggedInt.PascalsTriangle(12);
             ArrayJaggedInt.PrintTriangle(testPascalsTriangle);
             int maxElement = ArrayJaggedInt.MaxElementTriangle(testPascalsTriangle);
-            Console.WriteLine("MAX ELEMENT IS " + maxElement);
+            Console.WriteLine($"{Environment.NewLine}Maximal value: { maxElement}");
         }
 
 
         // Manipulation tests
         private static void TestRotateMatrix()
         {
-            int[,] testMatrix = MatrixInt.MatrixRandom(5,5, 1, 100);
+            Console.WriteLine("=== MATRIX ===");
+
+            int[,] testMatrix = MatrixInt.MatrixRandom(7,7, 1, 100);
             int[,] testMatrixRotatedLeft = MatrixInt.RotateSquare(testMatrix, 0);
             int[,] testMatrixRotatedRight = MatrixInt.RotateSquare(testMatrix, 1);
-            Console.WriteLine("=== ORIGINAL MATRIX ===");
             MatrixInt.PrintMatrix(testMatrix);
             Console.WriteLine();
-            Console.WriteLine("=== LEFT ROTATED MATRIX ===");
+            Console.WriteLine("=== COUNTER-CLOCKWISE ROTATED MATRIX ===");
             MatrixInt.PrintMatrix(testMatrixRotatedLeft);
             Console.WriteLine();
-            Console.WriteLine("=== RIGHT ROTATED MATRIX ===");
+            Console.WriteLine("=== CLOCKWISE ROTATED MATRIX ===");
             MatrixInt.PrintMatrix(testMatrixRotatedRight);
         }
 
@@ -65,8 +70,8 @@ namespace ConsoleApp
         // SortInt tests
         private static void TestSortSelectionVector()
         {
+            Console.WriteLine("=== VECTOR ===");
             int[] testVector = VectorInt.VectorRandom(100, 0, 1000);
-            Console.WriteLine("=== ORIGINAL VECTOR ===");
             VectorInt.PrintVector(testVector);
             SortInt.SortSelectionVector(testVector);
             Console.WriteLine("=== SORTED VECTOR ===");
@@ -75,8 +80,8 @@ namespace ConsoleApp
 
         private static void TestSortSelectionMatrix()
         {
+            Console.WriteLine("=== MATRIX ===");
             int[,] testMatrix = MatrixInt.MatrixRandom(5, 5, 0, 1000);
-            Console.WriteLine("=== ORIGINAL MATRIX ===");
             MatrixInt.PrintMatrix(testMatrix);
             SortInt.SortSelectionMatrix(testMatrix);
             Console.WriteLine("=== SELECTION-SORTED MATRIX ===");
@@ -86,8 +91,8 @@ namespace ConsoleApp
 
         private static void TestSortSelectionMatrixRows()
         {
+            Console.WriteLine("=== MATRIX ===");
             int[,] testMatrix = MatrixInt.MatrixRandom(5, 5, 0, 1000);
-            Console.WriteLine("=== ORIGINAL MATRIX ===");
             MatrixInt.PrintMatrix(testMatrix);
             SortInt.SortSelectionMatrixRows(testMatrix);
             Console.WriteLine();
