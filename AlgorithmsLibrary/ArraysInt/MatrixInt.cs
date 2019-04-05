@@ -210,8 +210,11 @@ namespace AlgorithmsLibrary
             // Determine mid-point
             int midRow = rowsMatrix / 2;
             int midCol = colsMatrix / 2;
+
+            Console.WriteLine($"midRow {midRow} midCol {midCol}");
+
             // if mid-point exists
-            if (midRow % 2 != 0 | midCol % 2 != 0)
+            if (midRow == midCol)
             {
                 // Assign mid-point in rotated matrix to mid-point of matrix
                 matrixRotated[midRow, midCol] = matrix[midRow, midCol];
@@ -259,19 +262,6 @@ namespace AlgorithmsLibrary
 
             return count;
         }
-
-        // SortInt matrix elements in ascending order
-        //public static void SortSelectionMatrixRows(int[,] matrix)
-        //{
-        //    int length = MatrixInt.CountElementsMatrix(matrix);
-
-        //    // Iterate vector columns (elements)
-        //    for (int row = 0; row < matrix.GetLength(0); row++)
-        //    {
-        //        int[] vectorRow = 
-        //        SortSelectionVector(matrix[row]);
-        //    }
-        //}
 
         // Print matrix to console
         // Apply padding to align elements (effective up to max console window size)
