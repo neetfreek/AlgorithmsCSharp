@@ -57,5 +57,13 @@ namespace AlgorithmsLibrary
             array[indexFirst] = array[indexSecond];
             array[indexSecond] = temp;
         }
+
+        internal static void Swap(char[] array, int indexFirst, int indexSecond)
+        {
+            //Console.WriteLine($"{array[indexFirst]}, swapping with with {array[indexSecond]})");
+            char temp = array[indexFirst];
+            array[indexFirst] = array[indexSecond];
+            array[indexSecond] = temp;
+        }
     }
 }

@@ -27,6 +27,26 @@ namespace AlgorithmsLibrary
             }
         }
 
+        public static void SortSelectionVector(char[] vector)
+        {
+            int length = vector.Length;
+
+            // Iterate vector columns (elements)
+            for (int counter = 0; counter < length; counter++)
+            {
+                // Iterate columns beyond current column
+                for (int counterNext = counter + 1; counterNext < length; counterNext++)
+                {
+                    // If current column element greater than next
+                    if (Helper.GreaterThan(vector[counter], vector[counterNext]))
+                    {
+                        // Swap with current column element in outer loop
+                        HelperSort.Swap(vector, counterNext, counter);
+                    }
+                }
+            }
+        }
+
         // Sort elements of matrix
         public static void SortSelectionMatrix(int[,] matrix)
         {

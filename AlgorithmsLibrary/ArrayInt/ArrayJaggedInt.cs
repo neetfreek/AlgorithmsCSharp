@@ -1,13 +1,20 @@
 ﻿using System;
 
+/*==================================*
+ *  Methods accept only INTEGERS    *
+ *==================================*/
+
 namespace AlgorithmsLibrary
 {
     public static class ArrayJaggedInt
     {
-        // Return Pascal's Triangle
-        // Initialise first rows's column (element) to 1
-        // Assign proceeding rows' columns by:  
-        // 1) Assign same column index to same as current 2) Assigning next column index 
+        /*==================================================*
+        *  Generate, return Pascal's Trialge.               *
+        *  Assign first rows's column (element) to 1        *   
+        *  proceeding rows' columns assigned by by:         *
+        *   1) Assign same column index to same as current  *
+        *   2) Assigning next column index                  *
+        *===================================================*/
         public static int[][] PascalsTriangle(int rows)
         {
             int[][] triangle = TriangleEquilateralEmpty(rows);
@@ -29,7 +36,6 @@ namespace AlgorithmsLibrary
             return triangle;
         }
 
-        // Return empty triangle
         public static int[][] TriangleEquilateralEmpty(int rows)
         {
             // Declare, initialise with default (0) values, triangle (array of arrays)
@@ -45,7 +51,6 @@ namespace AlgorithmsLibrary
             return triangle;
         }
 
-        // Return highest value triangle element
         public static int MaxElementTriangle(int[][] triangle)
         {
             int elementMax = 0;
@@ -63,8 +68,10 @@ namespace AlgorithmsLibrary
             return elementMax;
         }
 
-        // Print triangle to console
-        // Apply padding to align elements (effective up to max console window size)
+        /*======================================================================*
+        *  Print triangle to console                                            *
+        *  Apply padding between elements, effective up to console window size  *
+        *=======================================================================*/
         public static void PrintTriangle(int[][] triangle)
         {
             int rows = triangle.GetLength(0);

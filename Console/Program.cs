@@ -7,24 +7,30 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            TestRotateMatrix();
+            TestMatrixRandom();
         }
 
         // Shape tests
         private static void TestVectorRandom()
         {
-            Console.WriteLine("=== RANDOM VECTOR ===");
+            Console.WriteLine("=== RANDOM VECTOR INT ===");
 
-            int[] testVector = VectorInt.VectorRandom(10, 0, 1000);
-            VectorInt.PrintVector(testVector);
+            int[] testVectorInt = Vectors.VectorRandom(10, 0, 100);
+            Vectors.PrintVector(testVectorInt);
+
+            Console.WriteLine("=== RANDOM VECTOR LETTER ===");
+            char[] testVectorChar = Vectors.VectorRandom(20, 'a', 'p');
+            Vectors.PrintVector(testVectorChar);
         }
 
         private static void TestMatrixRandom()
         {
             Console.WriteLine("=== RANDOM MATRIX ===");
-
-            int[,] testMatrix = MatrixInt.MatrixRandom(5, 23, 0, 1000);
+            int[,] testMatrix = MatrixInt.MatrixRandom(5, 5, 0, 23);
             MatrixInt.PrintMatrix(testMatrix);
+            Console.WriteLine("=== RANDOM MATRIX CHAR ===");
+            char[,] testMatrixChar = MatrixInt.MatrixRandom(5, 5, 'a', 'z');
+            MatrixInt.PrintMatrix(testMatrixChar);
         }
 
         private static void TestMaximalSubMatrix()
@@ -71,11 +77,11 @@ namespace ConsoleApp
         private static void TestSortSelectionVector()
         {
             Console.WriteLine("=== VECTOR ===");
-            int[] testVector = VectorInt.VectorRandom(100, 0, 1000);
-            VectorInt.PrintVector(testVector);
+            int[] testVector = Vectors.VectorRandom(100, 0, 1000);
+            Vectors.PrintVector(testVector);
             SortInt.SortSelectionVector(testVector);
             Console.WriteLine("=== SORTED VECTOR ===");
-            VectorInt.PrintVector(testVector);
+            Vectors.PrintVector(testVector);
         }
 
         private static void TestSortSelectionMatrix()

@@ -1,11 +1,20 @@
 ﻿using System;
 
+/*======================================================================*
+ * TODO:                                                                *
+ * Methods in class overloaded to accept both CHARACTERS and INTEGERS   *
+ *======================================================================*/
+
 namespace AlgorithmsLibrary
 {
     public static class MatrixInt
     {
-        // Return matrix with numCols colums, numRows rows
-        // Elements assigned random values between eleMin, eleMax inclusive
+        /*======================================================*
+        *  Generate, return matrices.                           *
+        *  Maxtirx contains numEles number of elements          *   
+        *  Maxtrices' elements between eleMin, Max, inclusive   *
+        *  Character vectors return letters A-Z                 *
+        *=======================================================*/
         public static int[,] MatrixRandom (int numRows, int numCols, int eleMin, int eleMax)
         {
             // Declare matrix, initialise with default (0) values
@@ -24,18 +33,38 @@ namespace AlgorithmsLibrary
 
             return matrix;
         }
+        public static char[,] MatrixRandom(int numRows, int numCols, char eleMin, char eleMax)
+        {
+            // Declare matrix, initialise with default (0) values
+            char[,] matrix = new char[numRows, numCols];
 
-        // Return maxmimal sub-matrix (highest sum of elements) of given matrix
-        // Return first maximal sub-matrix if multiple have same total
-        // Return null if sub-matrix dimensions exceed matrix
-        // Sub-matrix size set by subMatrixRows, subMatrixCols
+            // Iterate rows
+            for (int counterRows = 0; counterRows < numRows; counterRows++)
+            {   // Iterate colums in row
+                for (int counterCols = 0; counterCols < numCols; counterCols++)
+                {
+                    // Assign element to random value
+                    matrix[counterRows, counterCols] =
+                    Helper.RandomLetter(eleMin, eleMax);
+                }
+            }
+
+            return matrix;
+        }
+
+        /* =================================================================*
+         * Return matrix's maxmimal sub-matrix (highest sum of elements)    *
+        // Return first maximal sub-matrix if multiple have same total      *
+        // Return null, warning, if sub-matrix dimensions exceed matrix     *
+        // Sub-matrix size set by subMatrixRows, subMatrixCols              * 
+        ====================================================================*/
         public static int[,] MaximalSubMatrix(int[,] matrix, int subMatrixRows, int subMatrixCols)
         {
             // Print message, break if sub-matrix dimensions exceed matrix dimensions
             if (subMatrixRows > matrix.GetLength(0)
             | subMatrixCols > matrix.GetLength(1))
             {
-                Console.WriteLine("Aboring: sub-matrix dimnesions exceeds matrix dimensions.");
+                Console.WriteLine("Aborting: sub-matrix dimnesions exceeds matrix dimensions.");
                 return null;
             }
             
@@ -211,8 +240,6 @@ namespace AlgorithmsLibrary
             int midRow = rowsMatrix / 2;
             int midCol = colsMatrix / 2;
 
-            Console.WriteLine($"midRow {midRow} midCol {midCol}");
-
             // if mid-point exists
             if (midRow == midCol)
             {
@@ -223,7 +250,6 @@ namespace AlgorithmsLibrary
             return matrixRotated;
         }
 
-        // Return highest value matrix element
         public static int MaxElementMatrix(int[,] matrix)
         {
             int eleMax = 0;
@@ -238,7 +264,6 @@ namespace AlgorithmsLibrary
             return eleMax;
         }
 
-        // Return sum total of all matrix elements
         public static int SumMatrixIntElements(int[,] matrix)
         {
             int total = 0;
@@ -263,8 +288,10 @@ namespace AlgorithmsLibrary
             return count;
         }
 
-        // Print matrix to console
-        // Apply padding to align elements (effective up to max console window size)
+        /*======================================================================*
+        *  Print matrix to console                                              *
+        *  Apply padding between elements, effective up to console window size  *
+        *=======================================================================*/
         public static void PrintMatrix(int[,] matrixToPrint)
         {
             int numRows = matrixToPrint.GetLength(0);
@@ -290,6 +317,27 @@ namespace AlgorithmsLibrary
                 // move to next line to print next row
                 Console.WriteLine();
             }
-        }    
+        }
+        public static void PrintMatrix(char[,] matrixToPrint)
+        {
+            int numRows = matrixToPrint.GetLength(0);
+            int numCols = matrixToPrint.GetLength(1);
+
+            // number of digits in largest element
+            // padding prepended to number to align elements printed
+            string padding = " ";
+
+            // iterate rows
+            for (int counterRows = 0; counterRows < numRows; counterRows++)
+            {
+                // iterate columns, print elements
+                for (int counterCols = 0; counterCols < numCols; counterCols++)
+                {
+                    Console.Write($"{padding}{matrixToPrint[counterRows, counterCols]} ");
+                }
+                // move to next line to print next row
+                Console.WriteLine();
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace AlgorithmsLibrary
         private static Random random = new Random();
 
         // Returns whether first > second
-        public static bool GreaterThan<T>(T first, T second) where T : IComparable
+        public static bool GreaterThan(int first, int second)
         {
             return first.CompareTo(second) > 0;
         }
@@ -26,6 +26,26 @@ namespace AlgorithmsLibrary
             int intRandom = random.Next(intMin, intMax);
 
             return intRandom;
+        }
+
+        // Return random letter between intMin, intMax inclusive
+        public static char RandomLetter(char min, char max)
+        {
+            char minFixed = char.ToUpper(min);
+            char maxFixed = char.ToUpper(max);
+            string charSetTotal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            int indexStart = charSetTotal.IndexOf(minFixed);
+            int indexEnd = charSetTotal.IndexOf(maxFixed);
+
+            if (indexStart == -1 | indexEnd == -1)
+            {
+                Console.WriteLine("Aborting. Entered character(s) not letters.");
+                return ('\0');
+            }
+            string charSet = charSetTotal.Substring(indexStart, indexEnd);
+            char charToInsert = charSet[RandomInt(0, charSet.Length)];             
+
+            return charToInsert;
         }
 
         // Return specifiednumber of blank spaces (" ")
