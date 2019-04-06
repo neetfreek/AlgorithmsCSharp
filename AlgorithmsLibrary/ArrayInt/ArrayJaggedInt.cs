@@ -1,15 +1,14 @@
 ﻿using System;
 
-/*==================================*
- *  Methods accept only INTEGERS    *
- *==================================*/
-
+/*==========================*
+ *  INTEGER functionality   *
+ *==========================*/
 namespace AlgorithmsLibrary
 {
     public static class ArrayJaggedInt
     {
         /*==================================================*
-        *  Generate, return Pascal's Trialge.               *
+        *  Return INTEGER Pascal's Trialge array of arrays  *
         *  Assign first rows's column (element) to 1        *   
         *  proceeding rows' columns assigned by by:         *
         *   1) Assign same column index to same as current  *
@@ -17,8 +16,8 @@ namespace AlgorithmsLibrary
         *===================================================*/
         public static int[][] PascalsTriangle(int rows)
         {
+            // Declare, initialise with null (0) values triangle
             int[][] triangle = TriangleEquilateralEmpty(rows);
-
             // Assign first row's column's value to 1
             triangle[0][0] = 1;
             // Iterate each row except last (modifying proceeding rows)
@@ -36,8 +35,18 @@ namespace AlgorithmsLibrary
             return triangle;
         }
 
+        /*======================================================================*
+        *  Return INTEGER array of arrays triangle                              *
+        *  Elements assigned default (0) values                                 *
+        *  Apply padding between elements, effective up rows = 13, still legible*
+        *=======================================================================*/
         public static int[][] TriangleEquilateralEmpty(int rows)
         {
+            if (rows > int.MaxValue)
+            {
+                Console.WriteLine("Aborting: too many rows!");
+                return null;
+            }
             // Declare, initialise with default (0) values, triangle (array of arrays)
             int[][] triangle = new int[rows][];
 
@@ -51,7 +60,10 @@ namespace AlgorithmsLibrary
             return triangle;
         }
 
-        public static int MaxElementTriangle(int[][] triangle)
+        /*======================================================================*
+        *  Return the highest value element of INTEGER array of arrays          *
+        *=======================================================================*/
+        public static int MaxElementArrayOfArrays(int[][] triangle)
         {
             int elementMax = 0;
 
@@ -69,8 +81,8 @@ namespace AlgorithmsLibrary
         }
 
         /*======================================================================*
-        *  Print triangle to console                                            *
-        *  Apply padding between elements, effective up to console window size  *
+        *  Print INTEGER array of arrays triangle to console                    *
+        *  Apply padding between elements, effective up rows = 13, still legible*
         *=======================================================================*/
         public static void PrintTriangle(int[][] triangle)
         {
@@ -78,8 +90,8 @@ namespace AlgorithmsLibrary
             // Iterate rows
             for (int row = 0; row < rows; row++)
             {
-                // Pad row by incrementally less based on row length (for triangle shape)
-                Console.Write("".PadRight((rows - row) * 2));
+                // Pad row from (rows-row)*2 - row per iteration for center
+                Console.Write("".PadLeft((rows - row) * 2));
                 // Iterate columns (elements)
                 for (int col = 0; col <= row; col++)
                 {

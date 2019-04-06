@@ -1,9 +1,8 @@
 ﻿using System;
 
-/*======================================================================*
- *  Methods in class overloaded to accept both CHARACTERS and INTEGERS  *
- *======================================================================*/
-
+ /*=============================================================*
+ *  Methods overloaded for CHARACTER, INTEGERS functionality    *
+ *==============================================================*/
 namespace AlgorithmsLibrary
 {
     public static class Vectors

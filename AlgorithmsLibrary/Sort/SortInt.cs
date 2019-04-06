@@ -72,7 +72,7 @@ namespace AlgorithmsLibrary
         // Sort elements in each row of matrix
         public static void SortSelectionMatrixRows(int[,] matrix)
         {
-            int length = MatrixInt.CountElementsMatrix(matrix);
+            int length = Matrices.CountElementsMatrix(matrix);
 
             // Iterate vector rows
             for (int row = 0; row < matrix.GetLength(0); row++)
