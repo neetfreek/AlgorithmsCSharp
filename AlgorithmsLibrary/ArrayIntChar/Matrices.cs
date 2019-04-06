@@ -1,8 +1,10 @@
 ﻿using System;
 
-/*==============================================================*
- *  Methods overloaded for CHARACTER, INTEGERS functionality    *
- *==============================================================*/
+/*======================================================================*
+ *  Functionality for the creation, rotating, getting information from, *
+ *      and printing matrices (2D arrays)                               *
+ *  Methods overloaded for CHARACTER, INTEGERS matrices (2D arrays)     *
+ *======================================================================*/
 namespace AlgorithmsLibrary
 {
     public static class Matrices

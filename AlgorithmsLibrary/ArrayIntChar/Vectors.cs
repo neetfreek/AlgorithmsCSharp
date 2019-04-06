@@ -1,8 +1,10 @@
 ﻿using System;
 
- /*=============================================================*
- *  Methods overloaded for CHARACTER, INTEGERS functionality    *
- *==============================================================*/
+/*=================================================================*
+*  Functionality for the creation, manipulation, testing symmetry, *
+*      and printing vectors (1D arrays)                            *
+*  Methods overloaded for CHARACTER, INTEGERS vectors (1D arrays)  *
+*==================================================================*/
 namespace AlgorithmsLibrary
 {
     public static class Vectors
