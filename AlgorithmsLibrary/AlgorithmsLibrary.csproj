@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ArrayInt\Helper.cs" />
+    <Folder Include="ArrayInt\" />
   </ItemGroup>
 
 </Project>
