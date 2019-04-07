@@ -37,6 +37,12 @@ namespace AlgorithmsLibrary
             // Declare matrix, initialise with default (0) values
             char[,] matrix = new char[numRows, numCols];
 
+            if (!char.IsLetter(eleMin) | !char.IsLetter(eleMax))
+            {
+                Console.WriteLine("Aborting: element range must be in character format.");
+                return matrix;
+            }
+
             // Iterate rows
             for (int counterRows = 0; counterRows < numRows; counterRows++)
             {   // Iterate colums in row
