@@ -22,9 +22,9 @@ namespace AlgorithmsLibrary
         /*======================================*
         *  Return number of digits in INTEGER   *
         *=======================================*/
-        public static int DigitsInInt(int intToCount)
+        public static int DigitsInInt(int number)
         {
-            int numCharsInInt = intToCount.ToString().Length;
+            int numCharsInInt = number.ToString().Length;
             return numCharsInInt;
         }
 
@@ -33,7 +33,7 @@ namespace AlgorithmsLibrary
         *===========================================================*/
         public static int RandomInt(int intMin, int intMax)
         {
-            int intRandom = random.Next(intMin, intMax);
+            int intRandom = random.Next(intMin, intMax+1);
 
             return intRandom;
         }
@@ -48,8 +48,8 @@ namespace AlgorithmsLibrary
             char maxFixed = char.ToUpper(max);
             string charSetTotal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             int indexStart = charSetTotal.IndexOf(minFixed);
-            int indexEnd = charSetTotal.IndexOf(maxFixed)+1;
-            int charsToInsertLength = indexEnd - indexStart;
+            int indexEnd = charSetTotal.IndexOf(maxFixed);
+            int charsToInsertLength = (indexEnd - indexStart) +1;
 
             //int indexEnd = charSetTotal.IndexOf(maxFixed);
 
@@ -60,7 +60,7 @@ namespace AlgorithmsLibrary
             }
 
             string charSet = charSetTotal.Substring(indexStart, charsToInsertLength);
-            char charToInsert = charSet[RandomInt(0, charSet.Length)];             
+            char charToInsert = charSet[RandomInt(0, charSet.Length-1)];             
 
             return charToInsert;
         }
