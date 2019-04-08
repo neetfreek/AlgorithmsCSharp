@@ -1,6 +1,11 @@
 ﻿/*==================================================================*
 *  Methods for sorting Vectors (1D arrays) and matrices (2D arrays) *
-*  Methods overloaded for CHARACTER, INTEGER arrays                                                                 *
+*  Methods overloaded for CHARACTER, INTEGER arrays                 *
+*                                                                   *
+* 1. Selection Sort: compare each index position's value to all     *
+*   successive index positions' values. If greater than, swap. Once *
+*   compared to all in collection, iterate to next index. Repeat    *
+*   until end of collection.                                        *
 *===================================================================*/
 
 namespace AlgorithmsLibrary
@@ -21,12 +26,19 @@ namespace AlgorithmsLibrary
                 // Iterate columns beyond current column
                 for (int counterNext = counter+1; counterNext < length; counterNext++)
                 {
+                    System.Console.WriteLine($"Checking: {vector[counter]} > {vector[counterNext]}?");
                     // If current column element greater than next
                     if (Helper.GreaterThan(vector[counter], vector[counterNext]))
                     {
+                        System.Console.WriteLine($"Y: Switching");
                         // Swap with current column element in outer loop
                         HelperSort.Swap(vector, counterNext, counter);
                     }
+                    else
+                    {
+                        System.Console.WriteLine($"N: Not switching");                    
+                    }
+                    Vectors.PrintVector(vector);
                 }
             }
         }

@@ -113,7 +113,7 @@ namespace AlgorithmsLibrary
         }
 
         /*==========================================*
-        *  Swap CHARACTER, INTEGER values in matrix *
+        *  Swap CHARACTER, INTEGER values in vector *
         *===========================================*/
         public static void Swap(int[] array, int indexFirst, int indexSecond)
         {
