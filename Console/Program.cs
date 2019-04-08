@@ -5,12 +5,13 @@ using AlgorithmsLibrary;
  *  Client class for AlgorithmsLibrary.                     *
  *  Contains methods for quick testing of different classes *
  *==========================================================*/
-namespace ConsoleApp
+namespace ClientConsole
 {
     class Program
     {
         static void Main(string[] args)
         {
+            TestPascalsTriangle();
         }
 
         // Shape tests
@@ -24,7 +25,6 @@ namespace ConsoleApp
             char[] testVectorChar = Vectors.VectorRandom(20, 'a', 'p');
             Vectors.PrintVector(testVectorChar);
         }
-
         private static void TestMatrixRandom()
         {
             Console.WriteLine("=== RANDOM MATRIX ===");
@@ -35,7 +35,6 @@ namespace ConsoleApp
             char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
             Matrices.PrintMatrix(testMatrixChar);
         }
-
         private static void TestMaximalSubMatrix()
         {
             Console.WriteLine("=== MATRIX ===");
@@ -48,7 +47,6 @@ namespace ConsoleApp
 
             Console.WriteLine($"{Environment.NewLine}Maximal matrix value = {Matrices.SumMatrixIntElements(maximalMatrix)}");
         }
-
         private static void TestPascalsTriangle()
         {
             Console.WriteLine("=== PASCAL'S TRIANGLE ===");
@@ -104,7 +102,6 @@ namespace ConsoleApp
             Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR CHARACTER ===");
             Vectors.PrintVector(testVectorChar);
         }
-
         private static void TestSortSelectionMatrix()
         {
             Console.WriteLine("=== MATRIX INTEGER ===");
@@ -121,7 +118,6 @@ namespace ConsoleApp
             SortCharInt.SortSelectionMatrix(testMatrixChars);
             Matrices.PrintMatrix(testMatrixChars);
         }
-
         private static void TestSortSelectionMatrixRows()
         {
             Console.WriteLine("=== MATRIX INTEGER ===");
