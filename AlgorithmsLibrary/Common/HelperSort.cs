@@ -1,8 +1,9 @@
-﻿using System;
-
-/*======================================================*
+﻿/*======================================================*
 *  Common helper methods for AlgorithmsLibrary sorting  *
 *=======================================================*/
+using System;
+using System.Collections.Generic;
+
 namespace AlgorithmsLibrary
 {
     public static class HelperSort
@@ -115,14 +116,14 @@ namespace AlgorithmsLibrary
         /*==========================================*
         *  Swap CHARACTER, INTEGER values in vector *
         *===========================================*/
-        public static void Swap(int[] array, int indexFirst, int indexSecond)
+        public static void Swap(List<int> array, int indexFirst, int indexSecond)
         {
             //Console.WriteLine($"{array[indexFirst]}, swapping with with {array[indexSecond]})");
             int temp = array[indexFirst];
             array[indexFirst] = array[indexSecond];
             array[indexSecond] = temp;
         }
-        internal static void Swap(char[] array, int indexFirst, int indexSecond)
+        internal static void Swap(List<char> array, int indexFirst, int indexSecond)
         {
             //Console.WriteLine($"{array[indexFirst]}, swapping with with {array[indexSecond]})");
             char temp = array[indexFirst];

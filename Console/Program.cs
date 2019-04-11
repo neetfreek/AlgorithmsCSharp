@@ -1,17 +1,17 @@
-﻿using System;
-using AlgorithmsLibrary;
-
-/*==========================================================*
+﻿/*==========================================================*
  *  Client class for AlgorithmsLibrary.                     *
  *  Contains methods for quick testing of different classes *
  *==========================================================*/
+using System;
+using AlgorithmsLibrary;
+
 namespace ClientConsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-            TestPascalsTriangle();
+            // Call methods in this class to test
         }
 
         // Shape tests
@@ -85,54 +85,54 @@ namespace ClientConsole
         }
 
 
-        // SortCharInt tests
+        // Sort tests
         private static void TestSortSelectionVector()
         {
             Console.WriteLine("=== VECTOR INTEGER===");
             int[] testVectorInt = Vectors.VectorRandom(25, 0, 1000);
             Vectors.PrintVector(testVectorInt);
-            SortCharInt.SortSelectionVector(testVectorInt);
+            int[] testVectorIntSorted = Sort.SortSelectionVector(testVectorInt);
             Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR INTEGER ===");
-            Vectors.PrintVector(testVectorInt);
+            Vectors.PrintVector(testVectorIntSorted);
 
             Console.WriteLine($"{Environment.NewLine}=== VECTOR CHARACTER===");
             char[] testVectorChar = Vectors.VectorRandom(25, 'a', 'z');
             Vectors.PrintVector(testVectorChar);
-            SortCharInt.SortSelectionVector(testVectorChar);
+            char[] testVectorCharSorted = Sort.SortSelectionVector(testVectorChar);
             Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR CHARACTER ===");
-            Vectors.PrintVector(testVectorChar);
+            Vectors.PrintVector(testVectorCharSorted);
         }
         private static void TestSortSelectionMatrix()
         {
             Console.WriteLine("=== MATRIX INTEGER ===");
-            int[,] testMatrix = Matrices.MatrixRandom(5, 5, 0, 100);
-            Matrices.PrintMatrix(testMatrix);
+            int[,] testMatrixInt = Matrices.MatrixRandom(5, 5, 0, 100);
+            Matrices.PrintMatrix(testMatrixInt);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX INTEGER ===");
-            SortCharInt.SortSelectionMatrix(testMatrix);
-            Matrices.PrintMatrix(testMatrix);
+            int[,] testMatrixIntSorted = Sort.SortSelectionMatrix(testMatrixInt);
+            Matrices.PrintMatrix(testMatrixIntSorted);
 
             Console.WriteLine($"{Environment.NewLine}=== MATRIX INTEGER ===");
-            char[,] testMatrixChars = Matrices.MatrixRandom(5, 5, 'a', 'z');
-            Matrices.PrintMatrix(testMatrixChars);
+            char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
+            Matrices.PrintMatrix(testMatrixChar);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX INTEGER ===");
-            SortCharInt.SortSelectionMatrix(testMatrixChars);
-            Matrices.PrintMatrix(testMatrixChars);
+            char[,] testMatrixCharSorted = Sort.SortSelectionMatrix(testMatrixChar);
+            Matrices.PrintMatrix(testMatrixChar);
         }
         private static void TestSortSelectionMatrixRows()
         {
             Console.WriteLine("=== MATRIX INTEGER ===");
-            int[,] testMatrix = Matrices.MatrixRandom(5, 5, 0, 1000);
-            Matrices.PrintMatrix(testMatrix);
-            SortCharInt.SortSelectionMatrixRows(testMatrix);
+            int[,] testMatrixInt = Matrices.MatrixRandom(5, 5, 0, 1000);
+            Matrices.PrintMatrix(testMatrixInt);
+            int[,] testMatrixIntSorted = Sort.SortSelectionMatrixRows(testMatrixInt);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED (ROWS) MATRIX INTEGER ===");
-            Matrices.PrintMatrix(testMatrix);
+            Matrices.PrintMatrix(testMatrixIntSorted);
 
             Console.WriteLine($"{Environment.NewLine}=== MATRIX CHARACTER ===");
             char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
             Matrices.PrintMatrix(testMatrixChar);
-            SortCharInt.SortSelectionMatrixRows(testMatrixChar);
+            char[,] testMatrixCharSorted = Sort.SortSelectionMatrixRows(testMatrixChar);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED (ROWS) MATRIX CHARACTER ===");
-            Matrices.PrintMatrix(testMatrixChar);
+            Matrices.PrintMatrix(testMatrixCharSorted);
         }
 
         // User console input tests
