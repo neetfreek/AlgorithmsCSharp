@@ -195,13 +195,13 @@ namespace AlgorithmsLibrary
                 comparisons++;
 
                 for (int counterPrior = counter;
-                    counterPrior > 0 && Helper.GreaterThan(list[counterPrior-1], list[counterPrior]);
+                    // if current element value less than prior's, decrement
+                    counterPrior > 0 && Helper.GreaterThan(list[counterPrior - 1], list[counterPrior]);
                     counterPrior--)
                 {
-                    HelperSort.Swap(list, counterPrior - 1,counterPrior);
+                    HelperSort.Swap(list, counterPrior - 1, counterPrior);
                     comparisons++;
                     swaps++;
-                    //Vectors.PrintVector(list.ToArray());
                 }
             }
             int[] vectorSorted = list.ToArray();

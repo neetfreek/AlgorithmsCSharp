@@ -11,8 +11,6 @@ namespace ClientConsole
     {
         static void Main(string[] args)
         {
-            // Call test methods here
-            TestSortInsertionMatrixRows();
         }
 
         // Shape tests
@@ -90,7 +88,7 @@ namespace ClientConsole
         private static void TestSortSelectionVector()
         {
             Console.WriteLine("=== VECTOR INTEGER===");
-            int[] testVectorInt = Vectors.VectorRandom(10, 0, 1000);
+            int[] testVectorInt = Vectors.VectorRandom(100, 0, 100);
             Vectors.PrintVector(testVectorInt);
             int[] testVectorIntSorted = Sort.SortSelection(testVectorInt);
             Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR INTEGER ===");
@@ -144,10 +142,10 @@ namespace ClientConsole
         private static void TestSortInsertionVector()
         {
             Console.WriteLine("=== VECTOR INTEGER===");
-            int[] testVectorInt = Vectors.VectorRandom(10, 0, 100);
+            int[] testVectorInt = Vectors.VectorRandom(100, 0, 100);
             Vectors.PrintVector(testVectorInt);
             int[] testVectorIntSorted = Sort.SortInsertion(testVectorInt);
-            Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR INTEGER ===");
+            Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR INTEGER () ===");
             Vectors.PrintVector(testVectorIntSorted);
 
             Console.WriteLine($"{Environment.NewLine}=== VECTOR CHARACTER===");
@@ -201,11 +199,15 @@ namespace ClientConsole
             int[] testVectorInt = Vectors.VectorRandom(10, 0, 100);
             Vectors.PrintVector(testVectorInt);
 
+            var watch = System.Diagnostics.Stopwatch.StartNew();            
             int[] SortedSelection = Sort.SortSelection(testVectorInt);
-            Console.WriteLine($"SELECTION SORT: Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}");
+            watch.Stop();
+            Console.WriteLine($"SELECTION SORT: Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}, time { watch.Elapsed.TotalMilliseconds}ms");
 
+            watch.Restart();
             int[] SortedInsertion = Sort.SortInsertion(testVectorInt);
-            Console.WriteLine($"INSERTION SORT: Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}");
+            watch.Stop();
+            Console.WriteLine($"INSERTION SORT: Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}, time{ watch.Elapsed.TotalMilliseconds}ms");
 
             Console.WriteLine();
             Vectors.PrintVector(SortedInsertion);
