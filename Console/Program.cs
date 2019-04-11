@@ -11,7 +11,7 @@ namespace ClientConsole
     {
         static void Main(string[] args)
         {
-            // Call methods in this class to test
+            TestSortSelectionMatrixRows();
         }
 
         // Shape tests
@@ -111,12 +111,12 @@ namespace ClientConsole
             int[,] testMatrixIntSorted = Sort.SortSelectionMatrix(testMatrixInt);
             Matrices.PrintMatrix(testMatrixIntSorted);
 
-            Console.WriteLine($"{Environment.NewLine}=== MATRIX INTEGER ===");
+            Console.WriteLine($"{Environment.NewLine}=== MATRIX CHARACTER ===");
             char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
             Matrices.PrintMatrix(testMatrixChar);
-            Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX INTEGER ===");
+            Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX CHARACTER ===");
             char[,] testMatrixCharSorted = Sort.SortSelectionMatrix(testMatrixChar);
-            Matrices.PrintMatrix(testMatrixChar);
+            Matrices.PrintMatrix(testMatrixCharSorted);
         }
         private static void TestSortSelectionMatrixRows()
         {

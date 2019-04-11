@@ -1,13 +1,14 @@
-﻿/*==================================================================*
-*  Methods for sorting Vectors (1D arrays) and matrices (2D arrays) *
-*  Methods overloaded for CHARACTER, INTEGER arrays                 *
-*  Arrays are cast into lists for sorting operations and re-cast    *
-*   into array for return                                           *
-* 1. Selection Sort: compare each index position's value to all     *
-*   successive index positions' values. If greater than, swap. Once *
-*   compared to all in collection, iterate to next index. Repeat    *
-*   until end of collection.                                        *
-*===================================================================*/
+﻿/*==========================================================================*
+*  Sort CHARACTER, INTEGER arrays1D, arrays2D from lowest to highest.       *
+*  Array converted to list for sorting, back to array for return.           *
+*  Print comparisons, swaps for INTEGER vesion of each sort method          *
+*===========================================================================*
+* 1. Selection Sort: Iterate, compare each collection's index's value to    *
+*   all successive indecies' values. If greater than, swap.                 *
+*   ~(length^2)/2 comparisons and n swaps                                   *
+* 2. Inserion Sort:
+*===========================================================================*/
+using System;
 using System.Collections.Generic;
 
 namespace AlgorithmsLibrary
@@ -20,6 +21,10 @@ namespace AlgorithmsLibrary
         *=======================================================*/
         public static int[] SortSelectionVector(int[] vector)
         {
+            // efficiency inforation
+            int comparisons = 0;
+            int swaps = 0;
+
             int length = vector.Length;
             List<int> list = new List<int>(vector);
 
@@ -29,14 +34,18 @@ namespace AlgorithmsLibrary
                 // Iterate columns beyond current column
                 for (int counterNext = counter+1; counterNext < length; counterNext++)
                 {
+                    comparisons++;
                     // If current column element greater than next
                     if (Helper.GreaterThan(list[counter], list[counterNext]))
                     {
+                        swaps++;
                         // Swap with current column element in outer loop
                         HelperSort.Swap(list, counterNext, counter);
                     }
                 }
             }
+            System.Console.WriteLine($"Comparisons: {comparisons}, swaps: {swaps}{Environment.NewLine}");
+
             int[] vectorSorted = list.ToArray();
 
             return vectorSorted;
@@ -71,23 +80,22 @@ namespace AlgorithmsLibrary
         *=======================================================*/
         public static int[,] SortSelectionMatrix(int[,] matrix)
         {
+            // efficiency informaiton
+
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
 
             // Declare vector, intialise values to those of matrix's
-            int[] vectorOfMatrix = HelperSort.MatrixToVector(matrix);
-            //SortSelectionVector(vectorOfMatrix);
-            List<int> list = new List<int>(SortSelectionVector(vectorOfMatrix));
+            List<int> list = new List<int>(SortSelectionVector(HelperSort.MatrixToVector(matrix)));
             int[,] matrixSorted = new int[rows, cols];
-            int counter = 0;
 
+            int counter = 0;
             // Iterate rows
             for (int row = 0; row < rows; row++)
             {
                 // Iterate columns
                 for (int col = 0; col < cols; col++)
                 {
-                    System.Console.WriteLine($"iterating list: {counter} = {list[counter]}");
                     // Assign current element's value to vector's
                     matrixSorted[row, col] = list[counter];
                     counter++;
@@ -102,13 +110,10 @@ namespace AlgorithmsLibrary
             int cols = matrix.GetLength(1);
 
             // Declare vector, intialise values to those of matrix's
-            char[] vectorOfMatrix = HelperSort.MatrixToVector(matrix);
-            //SortSelectionVector(vectorOfMatrix);
-            List<char> list = new List<char>(SortSelectionVector(vectorOfMatrix));
+            List<char> list = new List<char>(SortSelectionVector(HelperSort.MatrixToVector(matrix)));
             char[,] matrixSorted = new char[rows, cols];
 
             int counter = 0;
-
             // Iterate rows
             for (int row = 0; row < rows; row++)
             {
@@ -116,7 +121,7 @@ namespace AlgorithmsLibrary
                 for (int col = 0; col < cols; col++)
                 {
                     // Assign current element's value to vector's
-                    matrixSorted[row, col] = vectorOfMatrix[counter];
+                    matrixSorted[row, col] = list[counter];
                     counter++;
                 }
             }
@@ -132,7 +137,6 @@ namespace AlgorithmsLibrary
         {
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
-            int length = Matrices.CountElementsMatrix(matrix);
 
             int[,] matrixSortedRows = new int[rows, cols];
 
