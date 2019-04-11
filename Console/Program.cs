@@ -11,7 +11,8 @@ namespace ClientConsole
     {
         static void Main(string[] args)
         {
-            TestSortSelectionMatrixRows();
+            // Call test methods here
+            TestSortInsertionVector();
         }
 
         // Shape tests
@@ -85,22 +86,26 @@ namespace ClientConsole
         }
 
 
-        // Sort tests
+        // Sort Select tests
         private static void TestSortSelectionVector()
         {
             Console.WriteLine("=== VECTOR INTEGER===");
-            int[] testVectorInt = Vectors.VectorRandom(25, 0, 1000);
+            int[] testVectorInt = Vectors.VectorRandom(10, 0, 1000);
             Vectors.PrintVector(testVectorInt);
-            int[] testVectorIntSorted = Sort.SortSelectionVector(testVectorInt);
+            int[] testVectorIntSorted = Sort.SortSelection(testVectorInt);
             Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR INTEGER ===");
             Vectors.PrintVector(testVectorIntSorted);
 
             Console.WriteLine($"{Environment.NewLine}=== VECTOR CHARACTER===");
             char[] testVectorChar = Vectors.VectorRandom(25, 'a', 'z');
             Vectors.PrintVector(testVectorChar);
-            char[] testVectorCharSorted = Sort.SortSelectionVector(testVectorChar);
+            char[] testVectorCharSorted = Sort.SortSelection(testVectorChar);
             Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR CHARACTER ===");
             Vectors.PrintVector(testVectorCharSorted);
+
+            Console.WriteLine($"{Environment.NewLine}=== EFFICIENCY INFORMATION (INTEGER SORT) ===");
+            Console.WriteLine($"Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}");
+
         }
         private static void TestSortSelectionMatrix()
         {
@@ -108,14 +113,14 @@ namespace ClientConsole
             int[,] testMatrixInt = Matrices.MatrixRandom(5, 5, 0, 100);
             Matrices.PrintMatrix(testMatrixInt);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX INTEGER ===");
-            int[,] testMatrixIntSorted = Sort.SortSelectionMatrix(testMatrixInt);
+            int[,] testMatrixIntSorted = Sort.SortSelection(testMatrixInt);
             Matrices.PrintMatrix(testMatrixIntSorted);
 
             Console.WriteLine($"{Environment.NewLine}=== MATRIX CHARACTER ===");
             char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
             Matrices.PrintMatrix(testMatrixChar);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX CHARACTER ===");
-            char[,] testMatrixCharSorted = Sort.SortSelectionMatrix(testMatrixChar);
+            char[,] testMatrixCharSorted = Sort.SortSelection(testMatrixChar);
             Matrices.PrintMatrix(testMatrixCharSorted);
         }
         private static void TestSortSelectionMatrixRows()
@@ -123,16 +128,55 @@ namespace ClientConsole
             Console.WriteLine("=== MATRIX INTEGER ===");
             int[,] testMatrixInt = Matrices.MatrixRandom(5, 5, 0, 1000);
             Matrices.PrintMatrix(testMatrixInt);
-            int[,] testMatrixIntSorted = Sort.SortSelectionMatrixRows(testMatrixInt);
+            int[,] testMatrixIntSorted = Sort.SortSelectionRows(testMatrixInt);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED (ROWS) MATRIX INTEGER ===");
             Matrices.PrintMatrix(testMatrixIntSorted);
 
             Console.WriteLine($"{Environment.NewLine}=== MATRIX CHARACTER ===");
             char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
             Matrices.PrintMatrix(testMatrixChar);
-            char[,] testMatrixCharSorted = Sort.SortSelectionMatrixRows(testMatrixChar);
+            char[,] testMatrixCharSorted = Sort.SortSelectionRows(testMatrixChar);
             Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED (ROWS) MATRIX CHARACTER ===");
             Matrices.PrintMatrix(testMatrixCharSorted);
+        }
+
+        // Sort Insertion tests
+        private static void TestSortInsertionVector()
+        {
+            Console.WriteLine("=== VECTOR INTEGER===");
+            int[] testVectorInt = Vectors.VectorRandom(10, 0, 100);
+            Vectors.PrintVector(testVectorInt);
+            int[] testVectorIntSorted = Sort.SortInsertion(testVectorInt);
+            Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR INTEGER ===");
+            Vectors.PrintVector(testVectorIntSorted);
+
+            Console.WriteLine($"{Environment.NewLine}=== VECTOR CHARACTER===");
+            char[] testVectorChar = Vectors.VectorRandom(10, 'a', 'z');
+            Vectors.PrintVector(testVectorChar);
+            char[] testVectorCharSorted = Sort.SortInsertion(testVectorChar);
+            Console.WriteLine($"{Environment.NewLine}=== SORTED VECTOR CHARACTER ===");
+            Vectors.PrintVector(testVectorCharSorted);
+
+            Console.WriteLine($"{Environment.NewLine}=== EFFICIENCY INFORMATION (INTEGER SORT) ===");
+            Console.WriteLine($"Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}");
+
+        }
+
+        // Compare Sorts
+        private static void TestCompareSorts()
+        {
+            Console.WriteLine("=== VECTOR INTEGER===");
+            int[] testVectorInt = Vectors.VectorRandom(10, 0, 100);
+            Vectors.PrintVector(testVectorInt);
+
+            int[] SortedSelection = Sort.SortSelection(testVectorInt);
+            Console.WriteLine($"SELECTION SORT: Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}");
+
+            int[] SortedInsertion = Sort.SortInsertion(testVectorInt);
+            Console.WriteLine($"INSERTION SORT: Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}");
+
+            Console.WriteLine();
+            Vectors.PrintVector(SortedInsertion);
         }
 
         // User console input tests

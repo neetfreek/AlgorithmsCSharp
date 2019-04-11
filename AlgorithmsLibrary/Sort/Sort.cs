@@ -1,29 +1,47 @@
-﻿/*==========================================================================*
-*  Sort CHARACTER, INTEGER arrays1D, arrays2D from lowest to highest.       *
-*  Array converted to list for sorting, back to array for return.           *
-*  Print comparisons, swaps for INTEGER vesion of each sort method          *
-*===========================================================================*
-* 1. Selection Sort: Iterate, compare each collection's index's value to    *
-*   all successive indecies' values. If greater than, swap.                 *
-*   ~(length^2)/2 comparisons and n swaps                                   *
-* 2. Inserion Sort:
-*===========================================================================*/
+﻿/*======================================================================================*
+*  Sort CHARACTER, INTEGER arrays1D, arrays2D from lowest to highest.                   *
+*  Array converted to list for sorting, back to array for return.                       *
+*  Tests call efficiency information (comparisons, swaps) for INTEGER Vector sorts      *
+*===================================================================================    *
+* 1. Selection Sort: Compare each element's value to all successive elements' values    .
+*    If greater than, swap.                                                             *
+*   a. Comaprisons independent of collection's initial order.                           *
+*   b. Comparisons = ~(length^2)/2, SwapsMin = 0, SwapsMax = ~(length^2)/2              *
+* 2. Inserion Sort: Compare each element's value to all prior elements' values.         *
+*    Swap with previous until not smaller than previous element's value or at index 0   *
+*   a. Comparisons dependent on collection's initial order.                             *
+*   b. Comparisons = ~(length^2/4), Swaps = ~(length^2/4)                               *
+*=======================================================================================*/
 using System;
 using System.Collections.Generic;
 
 namespace AlgorithmsLibrary
 {
-    public static class Sort
+    public class Sort
     {
-        /*======================================================*
-        *  Selection Sort CHARACTER, INTEGER vector             *
-        *  Vector elements sorted from lowest to highest value  *  
-        *=======================================================*/
-        public static int[] SortSelectionVector(int[] vector)
+        /*==================================================================*
+        *  Efficiency information; reset and counted in vector INTEGER swap *
+        *  methods. Printed by  Test[NAME_SORT_METHOD]Vector()s in Program  *
+        *===================================================================*/
+        private static int comparisons;
+        public static int Comparisons
         {
-            // efficiency inforation
-            int comparisons = 0;
-            int swaps = 0;
+            get { return comparisons; }
+        }
+        private static int swaps;
+        public static int Swaps
+        {
+            get { return swaps; }
+        }
+
+        /*==============================================*
+        *  1. Selection Sort CHARACTER, INTEGER array   *
+        *===============================================*/
+        public static int[] SortSelection(int[] vector)
+        {
+            // reset efficiency information
+            comparisons = 0;
+            swaps = 0;
 
             int length = vector.Length;
             List<int> list = new List<int>(vector);
@@ -38,19 +56,19 @@ namespace AlgorithmsLibrary
                     // If current column element greater than next
                     if (Helper.GreaterThan(list[counter], list[counterNext]))
                     {
-                        swaps++;
                         // Swap with current column element in outer loop
                         HelperSort.Swap(list, counterNext, counter);
+                        swaps++;
+                        //Vectors.PrintVector(list.ToArray());
                     }
                 }
             }
-            System.Console.WriteLine($"Comparisons: {comparisons}, swaps: {swaps}{Environment.NewLine}");
 
             int[] vectorSorted = list.ToArray();
 
             return vectorSorted;
         }
-        public static char[] SortSelectionVector(char[] vector)
+        public static char[] SortSelection(char[] vector)
         {
             int length = vector.Length;
             List<char> list = new List<char>(vector);
@@ -73,12 +91,7 @@ namespace AlgorithmsLibrary
 
             return vectorSorted;
         }
-
-        /*======================================================*
-        *  Selection Sort CHARACTER, INTEGER matrix             *
-        *  Matrix elements sorted from lowest to highest value  *
-        *=======================================================*/
-        public static int[,] SortSelectionMatrix(int[,] matrix)
+        public static int[,] SortSelection(int[,] matrix)
         {
             // efficiency informaiton
 
@@ -86,7 +99,7 @@ namespace AlgorithmsLibrary
             int cols = matrix.GetLength(1);
 
             // Declare vector, intialise values to those of matrix's
-            List<int> list = new List<int>(SortSelectionVector(HelperSort.MatrixToVector(matrix)));
+            List<int> list = new List<int>(SortSelection(HelperSort.MatrixToVector(matrix)));
             int[,] matrixSorted = new int[rows, cols];
 
             int counter = 0;
@@ -104,13 +117,13 @@ namespace AlgorithmsLibrary
 
             return matrixSorted;
         }
-        public static char[,] SortSelectionMatrix(char[,] matrix)
+        public static char[,] SortSelection(char[,] matrix)
         {
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
 
             // Declare vector, intialise values to those of matrix's
-            List<char> list = new List<char>(SortSelectionVector(HelperSort.MatrixToVector(matrix)));
+            List<char> list = new List<char>(SortSelection(HelperSort.MatrixToVector(matrix)));
             char[,] matrixSorted = new char[rows, cols];
 
             int counter = 0;
@@ -128,12 +141,7 @@ namespace AlgorithmsLibrary
 
             return matrixSorted;
         }
-
-        /*==============================================================*
-        *  Selection Sort CHARACTER, INTEGER matrix's rows              *
-        *  Matrix rows' elements sorted from lowest to highest value    *
-        *===============================================================*/
-        public static int[,] SortSelectionMatrixRows(int[,] matrix)
+        public static int[,] SortSelectionRows(int[,] matrix)
         {
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
@@ -145,13 +153,13 @@ namespace AlgorithmsLibrary
             {
                 // Return new vector comprised of row's elements
                 int[] vectorRow = HelperSort.MatrixRowToVector(matrix, row);
-                int[] vectorRowSorted = SortSelectionVector(vectorRow);
+                int[] vectorRowSorted = SortSelection(vectorRow);
                 HelperSort.OverWriteMatrixRowWithVector(matrixSortedRows, vectorRowSorted, row);
             }
 
             return matrixSortedRows;
         }
-        public static char[,] SortSelectionMatrixRows(char[,] matrix)
+        public static char[,] SortSelectionRows(char[,] matrix)
         {
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
@@ -164,11 +172,64 @@ namespace AlgorithmsLibrary
             {
                 // Return new vector comprised of row's elements
                 char[] vectorRow = HelperSort.MatrixRowToVector(matrix, row);
-                char[] vectorRowSorted = SortSelectionVector(vectorRow);
+                char[] vectorRowSorted = SortSelection(vectorRow);
                 HelperSort.OverWriteMatrixRowWithVector(matrixSortedRows, vectorRowSorted, row);
             }
 
             return matrixSortedRows;
         }
+
+        /*==============================================*
+        *  2. Insertion Sort CHARACTER, INTEGER array   *
+        *===============================================*/
+        public static int[] SortInsertion(int[] vector)
+        {
+            // reset efficiency information
+            comparisons = 0;
+            swaps = 0;
+
+            int length = vector.Length;
+            List<int> list = new List<int>(vector);
+
+            // intialise counter to 1 as compare with prior elements' values
+            for (int counter = 1; counter < length; counter++)
+            {
+                comparisons++;
+
+                for (int counterPrior = counter;
+                    counterPrior > 0 && Helper.GreaterThan(list[counterPrior-1], list[counterPrior]);
+                    counterPrior--)
+                {
+                    HelperSort.Swap(list, counterPrior - 1,counterPrior);
+                    comparisons++;
+                    swaps++;
+                    //Vectors.PrintVector(list.ToArray());
+                }
+            }
+            int[] vectorSorted = list.ToArray();
+
+            return vectorSorted;
+        }
+        public static char[] SortInsertion(char[] vector)
+        {
+            int length = vector.Length;
+            List<char> list = new List<char>(vector);
+
+            // intialise counter to 1 as compare with prior elements' values
+            for (int counter = 1; counter < length; counter++)
+            {
+
+                for (int counterPrior = counter;
+                    counterPrior > 0 && Helper.GreaterThan(list[counterPrior - 1], list[counterPrior]);
+                    counterPrior--)
+                {
+                    HelperSort.Swap(list, counterPrior - 1, counterPrior);
+                }
+            }
+            char[] vectorSorted = list.ToArray();
+
+            return vectorSorted;
+        }
+
     }
 }
