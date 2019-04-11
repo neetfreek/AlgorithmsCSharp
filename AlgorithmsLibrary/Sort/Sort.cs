@@ -93,8 +93,6 @@ namespace AlgorithmsLibrary
         }
         public static int[,] SortSelection(int[,] matrix)
         {
-            // efficiency informaiton
-
             int rows = matrix.GetLength(0);
             int cols = matrix.GetLength(1);
 
@@ -230,6 +228,89 @@ namespace AlgorithmsLibrary
 
             return vectorSorted;
         }
+        public static int[,] SortInsertion(int[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
 
+            // Declare vector, intialise values to those of matrix's
+            List<int> list = new List<int>(SortInsertion(HelperSort.MatrixToVector(matrix)));
+            int[,] matrixSorted = new int[rows, cols];
+
+            int counter = 0;
+            // Iterate rows
+            for (int row = 0; row < rows; row++)
+            {
+                // Iterate columns
+                for (int col = 0; col < cols; col++)
+                {
+                    // Assign current element's value to vector's
+                    matrixSorted[row, col] = list[counter];
+                    counter++;
+                }
+            }
+
+            return matrixSorted;
+        }
+        public static char[,] SortInsertion(char[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+
+            // Declare vector, intialise values to those of matrix's
+            List<char> list = new List<char>(SortInsertion(HelperSort.MatrixToVector(matrix)));
+            char[,] matrixSorted = new char[rows, cols];
+
+            int counter = 0;
+            // Iterate rows
+            for (int row = 0; row < rows; row++)
+            {
+                // Iterate columns
+                for (int col = 0; col < cols; col++)
+                {
+                    // Assign current element's value to vector's
+                    matrixSorted[row, col] = list[counter];
+                    counter++;
+                }
+            }
+
+            return matrixSorted;
+        }
+        public static int[,] SortInsertionRows(int[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+
+            int[,] matrixSortedRows = new int[rows, cols];
+
+            // Iterate vector rows
+            for (int row = 0; row < rows; row++)
+            {
+                // Return new vector comprised of row's elements
+                int[] vectorRow = HelperSort.MatrixRowToVector(matrix, row);
+                int[] vectorRowSorted = SortInsertion(vectorRow);
+                HelperSort.OverWriteMatrixRowWithVector(matrixSortedRows, vectorRowSorted, row);
+            }
+
+            return matrixSortedRows;
+        }
+        public static char[,] SortInsertionRows(char[,] matrix)
+        {
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+
+            char[,] matrixSortedRows = new char[rows, cols];
+
+            // Iterate vector rows
+            for (int row = 0; row < rows; row++)
+            {
+                // Return new vector comprised of row's elements
+                char[] vectorRow = HelperSort.MatrixRowToVector(matrix, row);
+                char[] vectorRowSorted = SortInsertion(vectorRow);
+                HelperSort.OverWriteMatrixRowWithVector(matrixSortedRows, vectorRowSorted, row);
+            }
+
+            return matrixSortedRows;
+        }
     }
 }

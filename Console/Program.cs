@@ -12,7 +12,7 @@ namespace ClientConsole
         static void Main(string[] args)
         {
             // Call test methods here
-            TestSortInsertionVector();
+            TestSortInsertionMatrixRows();
         }
 
         // Shape tests
@@ -160,6 +160,38 @@ namespace ClientConsole
             Console.WriteLine($"{Environment.NewLine}=== EFFICIENCY INFORMATION (INTEGER SORT) ===");
             Console.WriteLine($"Comparisons: {Sort.Comparisons}, swaps: {Sort.Swaps}");
 
+        }
+        private static void TestSortInsertionMatrix()
+        {
+            Console.WriteLine("=== MATRIX INTEGER ===");
+            int[,] testMatrixInt = Matrices.MatrixRandom(5, 5, 0, 100);
+            Matrices.PrintMatrix(testMatrixInt);
+            Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX INTEGER ===");
+            int[,] testMatrixIntSorted = Sort.SortInsertion(testMatrixInt);
+            Matrices.PrintMatrix(testMatrixIntSorted);
+
+            Console.WriteLine($"{Environment.NewLine}=== MATRIX CHARACTER ===");
+            char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
+            Matrices.PrintMatrix(testMatrixChar);
+            Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED MATRIX CHARACTER ===");
+            char[,] testMatrixCharSorted = Sort.SortInsertion(testMatrixChar);
+            Matrices.PrintMatrix(testMatrixCharSorted);
+        }
+        private static void TestSortInsertionMatrixRows()
+        {
+            Console.WriteLine("=== MATRIX INTEGER ===");
+            int[,] testMatrixInt = Matrices.MatrixRandom(5, 5, 0, 1000);
+            Matrices.PrintMatrix(testMatrixInt);
+            int[,] testMatrixIntSorted = Sort.SortInsertionRows(testMatrixInt);
+            Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED (ROWS) MATRIX INTEGER ===");
+            Matrices.PrintMatrix(testMatrixIntSorted);
+
+            Console.WriteLine($"{Environment.NewLine}=== MATRIX CHARACTER ===");
+            char[,] testMatrixChar = Matrices.MatrixRandom(5, 5, 'a', 'z');
+            Matrices.PrintMatrix(testMatrixChar);
+            char[,] testMatrixCharSorted = Sort.SortInsertionRows(testMatrixChar);
+            Console.WriteLine($"{Environment.NewLine}=== SELECTION-SORTED (ROWS) MATRIX CHARACTER ===");
+            Matrices.PrintMatrix(testMatrixCharSorted);
         }
 
         // Compare Sorts
